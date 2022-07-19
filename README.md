@@ -37,6 +37,5 @@ The dataset used in this study comes from the UCLA Consortium for Neuropsychiatr
 
 ### Project Deliverables
 - Reproducible project workflow, detailed in git repo and via datalad logs, reproducible via containers.
-- Istallable python module containing all build in functions for reproducibility with alternative datasets
 - Executable Python scripts for data preparation and machine learning
 - Markdown file introducing the project and detailing project results
