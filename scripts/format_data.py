@@ -1,15 +1,18 @@
-"functions for organization of data folder"
+"functions for organization derivatives from fmriprep"
 
-import sys
+import argparse
+import pathlib
+
 import os
 import glob
-import json
 import numpy as np
+import json
 import pandas as pd
+from sklearn.utils import Bunch
 
 __all__ = [
 'get_directories',
-'get_database'
+'get_format_file'
 ]
 
 def get_directories(path = '.'):
@@ -25,57 +28,57 @@ def get_directories(path = '.'):
     paths (list): list of paths to all subject folders
     """
     abspath = os.path.abspath(path)
-    paths = [os.path.join(abspath, sub) for sub in glob.glob(f'{abspath}/sub-*')]
+    paths = [path for path in glob.glob(f'{abspath}/*sub-*')]
+    order = [int(path.split('-')[-1]) for path in paths]
+    index = np.argsort(order)
+    paths = [paths[i] for i in index]
     
-    return paths.sort()
+    return paths
 
 
 
-def get_database(path, task, save):
+def get_format_file(path, bold_suffix, confound_suffix):
     """
     Create and save a JSON file containing relvant subject information
 
     Parameters
     ----------
     path (str): path to top level data directory
-    task (str): task for which data is to be retrieved
-    save (str): path to save the data to
+    bold_suffix (str): suffix of bold files following identifier
+    confound_suffix (str): suffix of confound (tsv) files following identifier
     """
-    with open(os.path.join(path, 'dataset_description.json')) as o:
-        descriptor = json.load(o)
-    descriptor = [descriptor['Description']]
 
     dirs = get_directories(path)
     
-    participants = pd.read_csv(os.path.join(path, 'participants.tsv'))
-    subjects = [path.split('/')[-1] for path in dirs]
+    participants = pd.read_csv(os.path.join(path, 'participants.tsv'), sep='\t')
+    participant_list = participants['participant_id'].tolist()
+    available_subjects = [path.split('/')[-1] for path in dirs]
+    keep = [bool(sub in available_subjects) for sub in participant_list]
+    participants = participants.loc[keep]
 
-    assert subjects == participants['participant_id'], 'Inconsistent subject order in participants.tsv'
+    assert available_subjects == participants['participant_id'].tolist(), 'Inconsistent subject order in participants.tsv'
 
-    dtypes = participants['participant_id':'gender'].dytpes()
-    phenotypes = [[pheno, dtypes] for index, pheno in participants['participant_id':'gender'].iterrows()]
+    phenotypes = [pheno.tolist() for index, pheno in participants[['participant_id','diagnosis','age','gender']].iterrows()]
     
     func_paths = []
     confound_paths = []
 
     for dir in dirs:
         path_to_data = os.path.join(dir, 'func')
-        func_paths.append(glob.glob(os.path.join(f'{path_to_data}/*_desc-preproc_{task}.nii.gz')))
-        confound_paths.append(glob.glob(os.path.join(f'{path_to_data}/*_task-{task}_desc-confounds.tsv')))
+        func_paths.append(glob.glob(f'{path_to_data}/*{bold_suffix}*'))
+        confound_paths.append(glob.glob(f'{path_to_data}/*{confound_suffix}*'))
 
     database = {
         'func' : func_paths,
         'confounds' : confound_paths,
-        'phenotype' : phenotypes,
-        'description' : descriptor
+        'phenotypic' : phenotypes,
+        'subject_order' : available_subjects
     }
 
-    with open(save, 'w') as savefile:
+    with open(f'{path}/format_file.json', 'w') as savefile:
         json.dump(database, savefile)
 
     return
-
-
 
 def load_data(path, subjects = []):
     """
@@ -83,26 +86,36 @@ def load_data(path, subjects = []):
 
     Parameters
     ----------
-    path (str): path to JSON file describing data
-    subjects (list): list of subject idnices to load
+    path (str): path to directory
+    subjects (list): list of subject identfiers to load
 
     Returns
     ----------
     data (dict): data for specified subjects
     """
-    with open(path, 'r') as o:
+    with open(os.path.join(path,'format_file.json'), 'r') as o:
         data = json.load(o)
 
     if subjects:
-        data = {
-            'func' : [data['func'][sub] for sub in subjects],
-            'confounds' :[data['confounds'][sub] for sub in subjects],
-            'phenotype' : [data['phenotype'][sub] for sub in subjects],
-            'description' : data['description']
-        }
+        idcs = [data['subject_order'].index(f'sub-{sub}') for sub in subjects]
+    else:
+        idcs = list(range(len(data['subject_order'])))
 
+    data = Bunch(
+        order = data['subject_order'],
+        func = [data['func'][sub] for sub in idcs],
+        confounds = [data['confounds'][sub] for sub in idcs],
+        phenotypic = np.asarray([data['phenotypic'][sub] for sub in idcs]),
+        )
+    
     return data
 
 if __name__ == '__main__':
 
-    get_database(*sys.argv)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path_to_data', type=pathlib.Path, help='Path to derivatives directory or equivalent')
+    parser.add_argument('bold_suffix', type=str, help='Suffix of preprocessed BOLD files')
+    parser.add_argument('confounds_suffix', type=str, help='Suffix of fmriprep-generated confound files')
+    args = parser.parse_args()
+    
+    get_format_file(args.path_to_data, args.bold_suffix, args.confounds_suffix)
