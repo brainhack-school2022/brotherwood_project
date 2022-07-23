@@ -1,0 +1,87 @@
+{
+  "a_comp_cor_00": {
+    "CumulativeVarianceExplained": 0.3359436789,
+    "Mask": "combined",
+    "Method": "aCompCor",
+    "Retained": true,
+    "SingularValue": 270.1289592098,
+    "VarianceExplained": 0.3359436789
+  },
+  "a_comp_cor_01": {
+    "CumulativeVarianceExplained": 0.4670006862,
+    "Mask": "combined",
+    "Method": "aCompCor",
+    "Retained": true,
+    "SingularValue": 168.720569097,
+    "VarianceExplained": 0.1310570073
+  },
+  "a_comp_cor_02": {
+    "CumulativeVarianceExplained": 0.5647312556,
+    "Mask": "combined",
+    "Method": "aCompCor",
+    "Retained": true,
+    "SingularValue": 145.6978432473,
+    "VarianceExplained": 0.0977305694
+  },
+  "c_comp_cor_00": {
+    "CumulativeVarianceExplained": 0.3970440679,
+    "Mask": "CSF",
+    "Method": "aCompCor",
+    "Retained": true,
+    "SingularValue": 125.0233212776,
+    "VarianceExplained": 0.3970440679
+  },
+  "c_comp_cor_01": {
+    "CumulativeVarianceExplained": 0.5648196623,
+    "Mask": "CSF",
+    "Method": "aCompCor",
+    "Retained": true,
+    "SingularValue": 81.2710871263,
+    "VarianceExplained": 0.1677755945
+  },
+  "csf": {
+    "Method": "Mean"
+  },
+  "csf_wm": {
+    "Method": "Mean"
+  },
+  "global_signal": {
+    "Method": "Mean"
+  },
+  "t_comp_cor_00": {
+    "CumulativeVarianceExplained": 0.4337206799,
+    "Method": "tCompCor",
+    "Retained": true,
+    "SingularValue": 231.3688423235,
+    "VarianceExplained": 0.4337206799
+  },
+  "t_comp_cor_01": {
+    "CumulativeVarianceExplained": 0.7658254573,
+    "Method": "tCompCor",
+    "Retained": true,
+    "SingularValue": 202.4591317922,
+    "VarianceExplained": 0.3321047774
+  },
+  "tcompcor": {
+    "Method": "Mean"
+  },
+  "w_comp_cor_00": {
+    "CumulativeVarianceExplained": 0.3576939406,
+    "Mask": "WM",
+    "Method": "aCompCor",
+    "Retained": true,
+    "SingularValue": 221.5753585245,
+    "VarianceExplained": 0.3576939406
+  },
+  "w_comp_cor_01": {
+    "CumulativeVarianceExplained": 0.5060953784,
+    "Mask": "WM",
+    "Method": "aCompCor",
+    "Retained": true,
+    "SingularValue": 142.7199626955,
+    "VarianceExplained": 0.1484014378
+  },
+  "white_matter": {
+    "Method": "Mean"
+  }
+}
