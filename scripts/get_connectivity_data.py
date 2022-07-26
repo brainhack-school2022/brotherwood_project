@@ -133,12 +133,12 @@ if __name__ == '__main__':
             print('Getting correlation matrix...')
 
         correlation_matrix = correlation_measure.fit_transform([time_series])[0]
-        np.save(os.path.join(save_to, f'{subname}_{args.task}_connectome'), squareform(np.fill_diagonal(correlation_matrix, 0)), allow_pickle=True)
+        np.fill_diagonal(correlation_matrix,0)
+        utv = squareform(correlation_matrix)
+        np.save(os.path.join(save_to, f'{subname}_{args.task}_connectome'), utv, allow_pickle=True)
 
         if args.verbosity-1:
             print('Done.')
-
-
 
     if args.verbosity:
         print('\n')
