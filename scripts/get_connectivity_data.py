@@ -8,8 +8,8 @@ import numpy as np
 import nibabel as nib
 from nilearn.maskers import NiftiLabelsMasker
 from nilearn.connectome import ConnectivityMeasure
-from nilearn.interfaces.fmriprep import load_confounds
-from format_data import load_data
+from nilearn.interfaces.fmriprep import load_confounds_strategy
+from scripts.format_data import load_data
 
 if __name__ == '__main__':
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     if args.verbosity:
         print('Initialising connectivity measure...')
 
-    correlation_measure = ConnectivityMeasure(kind=args.connectivity_measure, vectorize=True)
+    correlation_measure = ConnectivityMeasure(kind=args.connectivity_measure, vectorize=True, discard_diagonal=True)
 
     if args.verbosity:
         print(f'Data for {len(data.func)} subjects loaded, generating correlation matrices...')
@@ -71,7 +71,7 @@ if __name__ == '__main__':
         if args.verbosity-1:
             print('Loading confounds...')
 
-        conf = load_confounds(func_path)[0]
+        conf, sample_mask = load_confounds_strategy(func_path, denoise_strategy = 'simple', motion = 'basic', global_signal = 'basic')
 
         if args.verbosity-1:
             print('Fitting mask...')

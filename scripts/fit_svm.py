@@ -151,6 +151,8 @@ if __name__ == '__main__':
         print('Getting coefficients...')
     
     coefficients = search.best_estimator_.named_steps['svc'].coef_
+    coef_order = search.best_estimator_.named_steps['svc'].classes_
+    coefficients = np.asarray([coefficients, coef_order], dtype=object)
     np.save(os.path.join('/'.join(save_to.split('/')[:-1]), f'svc_{args.task}_weights{args.file_suffix}'), coefficients, allow_pickle=True)
     
     if args.verbosity:
@@ -165,7 +167,7 @@ if __name__ == '__main__':
 
     history = pd.DataFrame(search.cv_results_)
 
-    with open(os.path.join(save_to, f'svc_{args.task}_classification_report.json'), 'w') as savefile:
+    with open(os.path.join(save_to, f'svc_{args.task}_classification_report{args.file_suffix}.json'), 'w') as savefile:
         json.dump(scores, savefile)
     cm.to_csv(os.path.join(save_to, f'svc_{args.task}_confusion_matrix{args.file_suffix}.tsv'), sep='\t')
     history.to_csv(os.path.join(save_to, f'svc_{args.task}_search_history{args.file_suffix}.tsv'), sep='\t')
