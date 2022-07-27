@@ -4,10 +4,11 @@ import argparse
 
 import os
 import glob
+import json
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
@@ -51,14 +52,14 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('path', type=str, help='Path to derivatives directory or equivalent')
-    parser.add_argument('--file_suffix', type=str, help='Suffix of saved output files')
+    parser.add_argument('--file_suffix', type=str, help='Suffix of saved output files', default="")
     parser.add_argument('--subjects', help='Path to file or Python list of subjects to get data for', default=[])
     parser.add_argument('--task', type=str, help='Functional task to use connectivity data of', default='rest')
     parser.add_argument('--phenotypes', help='Path to file or Python list phenotypic values to classify', default=[])
     parser.add_argument('--verbosity', type=int, default=1)
     args = parser.parse_args()
 
-    save_to = os.path.join(os.path.abspath(args.path), 'ml_metrics')
+    save_to = os.path.join('/'.join(os.path.abspath(args.path).split('/')[:-2]), 'results', 'ml_metrics')
     if not(glob.glob(save_to)):
         os.mkdir(save_to)
 
@@ -85,6 +86,7 @@ if __name__ == '__main__':
 
     features, labels = get_model_input(args.path, args.task, subjects, phenotypes)
     label_set = np.unique(labels)
+    lab_names = {'CONTROL' : 'Control', 'BIPOLAR' : 'Bipolar', 'ADHD' : 'ADHD', 'SCHZ' : 'Schizophrenia'}
 
     # split data
 
@@ -94,7 +96,7 @@ if __name__ == '__main__':
     X, X_test, y, y_test = train_test_split(
                                                         features,
                                                         labels,
-                                                        test_size = 0.2,
+                                                        test_size = 0.3,
                                                         shuffle = True,
                                                         stratify = labels
     )
@@ -126,7 +128,7 @@ if __name__ == '__main__':
 
     param_grid = {
                 'svc__kernel':['linear'],
-                'svc__C': [i for i in 10. ** np.arange(-5,5)],
+                'svc__C': [i for i in 10. ** np.arange(-5,8, step = 0.5)],
                 }
 
     if args.verbosity:
@@ -135,6 +137,7 @@ if __name__ == '__main__':
     search = GridSearchCV(estimator = pipe,
                         param_grid = param_grid,
                         cv = splits,
+                        return_train_score = True,
                         verbose = args.verbosity)
 
     search.fit(X,y)
@@ -142,17 +145,31 @@ if __name__ == '__main__':
     if args.verbosity:
         print('Predicting test data using best estimator')
 
-    pred = search.predict(X_test)
+    y_pred = search.predict(X_test)
 
     if args.verbosity:
-        print('Getting metrics...')
+        print('Getting coefficients...')
     
-    cm = confusion_matrix(y_test, pred, labels = label_set)
+    coefficients = search.best_estimator_.named_steps['svc'].coef_
+    np.save(os.path.join('/'.join(save_to.split('/')[:-1]), f'svc_{args.task}_weights{args.file_suffix}'), coefficients, allow_pickle=True)
+    
+    if args.verbosity:
+        print('Getting metrics...')
+
+    cm = confusion_matrix(y_test, y_pred, labels = label_set)
     cm = np.array(cm)
     cm = pd.DataFrame(cm, index = label_set, columns = label_set)
-    history = pd.DataFrame(search.cv_results_)
-    cm.to_csv(os.path.join(save_to, f'svc_{args.task}_confusion_matrix{args.file_suffix}.tsv'), sep='\t')
-    history.to_csv(os.path.join(save_to, f'svc_{args.task}_search_history.tsv{args.file_suffix}'), sep='\t')
 
+    scores = classification_report(y_test, y_pred, labels = label_set, target_names = [lab_names[lab] for lab in label_set], output_dict = True)
+    scores['accuracy'] = accuracy_score(y_test, y_pred)
+
+    history = pd.DataFrame(search.cv_results_)
+
+    with open(os.path.join(save_to, f'svc_{args.task}_classification_report.json'), 'w') as savefile:
+        json.dump(scores, savefile)
+    cm.to_csv(os.path.join(save_to, f'svc_{args.task}_confusion_matrix{args.file_suffix}.tsv'), sep='\t')
+    history.to_csv(os.path.join(save_to, f'svc_{args.task}_search_history{args.file_suffix}.tsv'), sep='\t')
+    
+    
     if args.verbosity:
         print('Done.')
