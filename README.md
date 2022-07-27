@@ -44,11 +44,49 @@ A summary of the dataset is as follows:
 - Markdown file introducing the project and detailing project results
 
 ## Guide to Reproducibility
-All scripts used in the analyses are located in the `scripts` directory and are executable in the Linux command line. Each script is written such that it can be executed using fMRI data from alternative functional tasks from the same dataset, or with similar datasets conforming to BIDS formatting standards. The `requirements.txt` file provides all neccesary dependencies for execution of scripts following preprocessing using fMRIprep. To run `preprocessing.sh` it is highly recommended to use a HPC cluster, more instructions on preprocessing requirements and how to properly format `preprocessing.sh` can be found at https://www.nipreps.org/apps/singularity/.
+All scripts used in the analyses are located in the `scripts` directory and are executable in the Linux command line. Each script is written such that it can be executed using fMRI data from alternative functional tasks from the same dataset, or with similar datasets conforming to BIDS formatting standards. The `requirements.txt` file provides all neccesary dependencies for execution of scripts following preprocessing using fMRIprep.
 
-A basic example of running the contents of the `scripts` directory is as follows:
+A basic example of running the contents of the `scripts` directory on a Linux machine is as follows:
+
+### Running fMRIprep
+
+To run `mriprep.sh` it is highly recommended to use a HPC cluster, more instructions on preprocessing requirements and how to properly format `mriprep.sh` can be found at https://www.nipreps.org/apps/singularity/.
+
+Following correct installation and formatting, preprocessing can be run by running `$ sbatch mriprep.sh`
+
+### Setting up a virtual environment for running the python scripts
 ```
+$ cd <path_to_cloned_repo> # go to project directory
+
+$ python3 -m venv <venv_name> # initialize virtual environment
+
+$ source <path_to_venv>/bin/activate # enter the virtual environment
+
+(<venv_name>) $ pip install --upgrade pip # upgrade the package manager
+
+(<venv_name>) $ pip install -r requirements.txt # install project dependencies
 ```
+
+*What follows is a basic usage tutorial on `.py` scripts in the `scripts` directory; for more information on each script and its associated parameters use:* `scripts/<script_name>.py -h`
+
+### Getting connectivity data
+```
+$ source <path_to_venv>/bin/activate # enter the virtual environment
+
+(<venv_name>) $ scripts/format_data.py <path_to_derivatives_file> <preprocessed_bold_file_suffixes> # create an index file in the derivatives folder for use with other python scripts
+
+(<venv_name>) $ scripts/get_connectivity_data.py <path_to_derivatives_file> <path_to_atlas> # get individual subject connectomes
+```
+
+### Fitting a Support Vector Classifier
+```
+$ source <path_to_venv>/bin/activate # enter the virtual environment
+
+(<venv_name>) $ scripts/fit_svm.py <path_to_derivatives_file> # perform a parameter search and find the best fitting model
+```
+
+### Troubleshooting
+In the instance that attempting to run a script returns `permission denied`, it may be neccesary to run `(<venv_name>) $ chmod +x scripts/<script_name>.py`. Alternatively running `(<venv_name> $ python3 scripts/<script_name>.py <args>)` will execute the scripts.
 
 ##References
 Poldrack, R., Congdon, E., Triplett, W., Gorgolewski, K., Karlsgodt, K., Mumford, J., Sabb, F., Freimer, N., London, E., Cannon, T. and Bilder, R., 2016. A phenome-wide examination of neural and cognitive function. *Scientific Data*, 3(1).

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 "script for assessing the performance of sklearns SVC on connectivity data"
 
 import argparse
@@ -174,4 +176,4 @@ if __name__ == '__main__':
     
     
     if args.verbosity:
-        print('Done.')
+        print(f'Mertics and model coefficients saved to {"/".join(save_to.split("/")[:-1])}')

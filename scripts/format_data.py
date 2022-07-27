@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 "functions for organization derivatives from fmriprep"
 
 import argparse
@@ -37,7 +39,7 @@ def get_directories(path = '.'):
 
 
 
-def get_format_file(path, bold_suffix, confound_suffix):
+def get_format_file(path, bold_suffix):
     """
     Create and save a JSON file containing relvant subject information
 
@@ -61,16 +63,13 @@ def get_format_file(path, bold_suffix, confound_suffix):
     phenotypes = [pheno.tolist() for index, pheno in participants[['participant_id','diagnosis','age','gender']].iterrows()]
     
     func_paths = []
-    #confound_paths = []
 
     for dir in dirs:
         path_to_data = os.path.join(dir, 'func')
         func_paths.append(glob.glob(f'{path_to_data}/*{bold_suffix}*'))
-        #confound_paths.append(glob.glob(f'{path_to_data}/*{confound_suffix}*'))
 
     database = {
         'func' : func_paths,
-        #'confounds' : confound_paths,
         'phenotypic' : phenotypes,
         'subject_order' : available_subjects
     }
@@ -104,7 +103,6 @@ def load_data(path, subjects = []):
     data = Bunch(
         order = [data['subject_order'][sub] for sub in idcs],
         func = [data['func'][sub] for sub in idcs],
-        #confounds = [data['confounds'][sub] for sub in idcs],
         phenotypic = np.asarray([data['phenotypic'][sub] for sub in idcs]),
         )
     
@@ -115,7 +113,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('path_to_data', type=pathlib.Path, help='Path to derivatives directory or equivalent')
     parser.add_argument('bold_suffix', type=str, help='Suffix of preprocessed BOLD files')
-    parser.add_argument('confounds_suffix', type=str, help='Suffix of fmriprep-generated confound files')
     args = parser.parse_args()
     
-    get_format_file(args.path_to_data, args.bold_suffix, args.confounds_suffix)
+    get_format_file(args.path_to_data, args.bold_suffix)

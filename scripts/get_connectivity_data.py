@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 "script for generation of connectome correlation matrices"
 
 import argparse
