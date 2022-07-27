@@ -38,6 +38,8 @@ The dataset used in this study comes from the UCLA Consortium for Neuropsychiatr
 
 A summary of the dataset is as follows:
 
+<img src="results/plots/data_distribution.png">
+
 ### Project Deliverables
 - Reproducible project workflow, detailed in git repo and via datalad logs, reproducible via containers.
 - Executable Python scripts for data preparation and machine learning
