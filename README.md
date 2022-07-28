@@ -38,8 +38,6 @@ The dataset used in this study comes from the UCLA Consortium for Neuropsychiatr
 
 A summary of the dataset is as follows:
 
-placeholder
-
 <p align="center">
 <img src="results/plots/data_distribution.png">
 </p>
