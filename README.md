@@ -37,97 +37,15 @@ The dataset used in this study comes from the UCLA Consortium for Neuropsychiatr
 
 A summary of the dataset is as follows:
 
-<align="center">
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>ADHD</th>
-      <th>Bipolar</th>
-      <th>Control</th>
-      <th>Schizophrenia</th>
-      <th>macro avg</th>
-      <th>weighted avg</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>precision</td>
-      <td>0.0</td>
-      <td>0.08333333333333333</td>
-      <td>0.5283018867924528</td>
-      <td>0.5833333333333334</td>
-      <td>0.2987421383647799</td>
-      <td>0.37401480773823736</td>
-      <td>precision</td>
-      <td>precision</td>
-      <td>precision</td>
-      <td>precision</td>
-    </tr>
-    <tr>
-      <td>recall</td>
-      <td>0.0</td>
-      <td>0.06666666666666667</td>
-      <td>0.7567567567567568</td>
-      <td>0.4666666666666667</td>
-      <td>0.32252252252252256</td>
-      <td>0.45569620253164556</td>
-      <td>recall</td>
-      <td>recall</td>
-      <td>recall</td>
-      <td>recall</td>
-    </tr>
-    <tr>
-      <td>f1-score</td>
-      <td>0.0</td>
-      <td>0.07407407407407407</td>
-      <td>0.6222222222222221</td>
-      <td>0.5185185185185186</td>
-      <td>0.3037037037037037</td>
-      <td>0.4039381153305204</td>
-      <td>f1-score</td>
-      <td>f1-score</td>
-      <td>f1-score</td>
-      <td>f1-score</td>
-    </tr>
-    <tr>
-      <td>support</td>
-      <td>12.0</td>
-      <td>15.0</td>
-      <td>37.0</td>
-      <td>15.0</td>
-      <td>79.0</td>
-      <td>79.0</td>
-      <td>support</td>
-      <td>support</td>
-      <td>support</td>
-      <td>support</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+<p align="center">
+|              |Participants|Male|Female|Average Age|Age Std|
+|:-------------|:----------:|:--:|:----:|:---------:|:-----:|
+|Control       |122         |65  |57    |32.05      |10.28  |
+|Schizophrenia |50          |38  |21    |35.29      |8.94   |
+|Bipolar       |49          |28  |19    |31.59      |8.77   |
+|ADHD          |40          |21  |12    |36.46      |8.79   |
+|Total         |261         |152 |109   |33.29      |9.29   |
 </p>
-
-img {
-    max-width: 100%;
-    max-height: auto;
-}
 
 <p align="center">
 <img src="results/plots/data_distribution.png">
