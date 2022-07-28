@@ -38,6 +38,7 @@ The dataset used in this study comes from the UCLA Consortium for Neuropsychiatr
 A summary of the dataset is as follows:
 
 <p align="center">
+
 |              |Participants|Male|Female|Average Age|Age Std|
 |:-------------|:----------:|:--:|:----:|:---------:|:-----:|
 |Control       |122         |65  |57    |32.05      |10.28  |
@@ -45,6 +46,7 @@ A summary of the dataset is as follows:
 |Bipolar       |49          |28  |19    |31.59      |8.77   |
 |ADHD          |40          |21  |12    |36.46      |8.79   |
 |Total         |261         |152 |109   |33.29      |9.29   |
+
 </p>
 
 <p align="center">
