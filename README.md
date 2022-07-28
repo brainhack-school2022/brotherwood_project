@@ -40,7 +40,7 @@ A summary of the dataset is as follows:
 
 <p align="center">
 <img src="results/plots/data_distribution.png">
-<p align="center">
+</p>
 
 ### Project Deliverables
 - Reproducible project workflow, detailed in git repo and via datalad logs, reproducible via containers.
