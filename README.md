@@ -8,7 +8,6 @@
 </a>
 
 I am a first year PhD student at the University of Montreal studying in computational neuroscience. I come from a fairly different background, with a BSc in Genetics and an MSci in Bioinformatics from the University of Birmingham. Much of my current work is in perception, using machine learning based approaches to model representational spaces in individual subjects. My hope is that BHS will introduce me to tools and best prectices I need to learn in order to fully integrate into the field of computational cognitive neuroscience.
-
 ## Project Summary
 
 ### Introduction
@@ -37,6 +36,98 @@ Brain regions with correlated temporal activity are seen to form functional netw
 The dataset used in this study comes from the UCLA Consortium for Neuropsychiatric Phenomics LA5c Study (Poldrack *et al*., 2016). The dataset is comprised of fMRI data for 130 healthy individuals, and 142 individuals with neuropsychiatric disorders. Of these 148 individuals, 50 suffer from schizophrenia, 49 from bipolar disorder, and 43 from ADHD. The dataset contains fMRI data collected at rest and over a series of attentional tasks. The fMRI data is in nifti format and the dataset is provided in BIDS format. More information on this dataset can be found at https://openneuro.org/datasets/ds000030/versions/1.0.0.
 
 A summary of the dataset is as follows:
+
+<align="center">
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>ADHD</th>
+      <th>Bipolar</th>
+      <th>Control</th>
+      <th>Schizophrenia</th>
+      <th>macro avg</th>
+      <th>weighted avg</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>precision</td>
+      <td>0.0</td>
+      <td>0.08333333333333333</td>
+      <td>0.5283018867924528</td>
+      <td>0.5833333333333334</td>
+      <td>0.2987421383647799</td>
+      <td>0.37401480773823736</td>
+      <td>precision</td>
+      <td>precision</td>
+      <td>precision</td>
+      <td>precision</td>
+    </tr>
+    <tr>
+      <td>recall</td>
+      <td>0.0</td>
+      <td>0.06666666666666667</td>
+      <td>0.7567567567567568</td>
+      <td>0.4666666666666667</td>
+      <td>0.32252252252252256</td>
+      <td>0.45569620253164556</td>
+      <td>recall</td>
+      <td>recall</td>
+      <td>recall</td>
+      <td>recall</td>
+    </tr>
+    <tr>
+      <td>f1-score</td>
+      <td>0.0</td>
+      <td>0.07407407407407407</td>
+      <td>0.6222222222222221</td>
+      <td>0.5185185185185186</td>
+      <td>0.3037037037037037</td>
+      <td>0.4039381153305204</td>
+      <td>f1-score</td>
+      <td>f1-score</td>
+      <td>f1-score</td>
+      <td>f1-score</td>
+    </tr>
+    <tr>
+      <td>support</td>
+      <td>12.0</td>
+      <td>15.0</td>
+      <td>37.0</td>
+      <td>15.0</td>
+      <td>79.0</td>
+      <td>79.0</td>
+      <td>support</td>
+      <td>support</td>
+      <td>support</td>
+      <td>support</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</p>
+
+img {
+    max-width: 100%;
+    max-height: auto;
+}
 
 <p align="center">
 <img src="results/plots/data_distribution.png">
