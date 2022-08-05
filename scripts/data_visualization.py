@@ -39,14 +39,14 @@ if __name__ == '__main__':
     phen['Age'] = [int(a) for a in phen['Age']]
     plot = sns.violinplot(x='Diagnosis', y='Age', hue='Sex', data=phen)
     plot.set_xticklabels(['Control', 'Schizophrenia', 'Bipolar', 'ADHD'])
-    plot.get_figure().savefig('results/plots/data_distribution')
+    plot.get_figure().savefig('results/plots/data_distribution.svg', format='svg')
     plt.clf()
 
     # plot atlas used in masking
 
     atlas = datasets.fetch_atlas_basc_multiscale_2015()
     plotting.plot_roi(atlas['scale064'], draw_cross=False)
-    plt.savefig('results/plots/atlas_rois')
+    plt.savefig('results/plots/atlas_rois.svg', format='svg')
     plt.clf()
 
     view = plotting.view_img(atlas['scale064'])
@@ -59,19 +59,19 @@ if __name__ == '__main__':
     img = data.func[0][0]
     conf, sample_mask = load_confounds_strategy(img, denoise_strategy = 'simple', motion = 'basic', global_signal = 'basic')
     masker = NiftiLabelsMasker(labels_img=atlas['scale064'], standardize=True)
-    masked_data = masker.fit_transform(img)
+    masked_data = masker.fit_transform(img, confounds=conf, sample_mask=sample_mask)
     plt.plot(masked_data[0])
-    plt.savefig('results/plots/single_timeseries')
+    plt.savefig('results/plots/single_timeseries.svg', format='svg')
     plt.clf()
     plt.plot(masked_data)
-    plt.savefig('results/plots/all_timeseries')
+    plt.savefig('results/plots/all_timeseries.svg', format='svg')
     plt.clf()
 
     # plot connectivity matrix
 
     matrix = np.load(os.path.join('data/derivatives/connectomes', os.listdir('data/derivatives/connectomes')[0]))
     plotting.plot_matrix(squareform(matrix), vmin = -1, vmax = 1, labels=masker.labels_)
-    plt.savefig('results/plots/connectivity_matrix')
+    plt.savefig('results/plots/connectivity_matrix.svg', format='svg')
     plt.clf()
 
     # plot feature matrix
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     plt.title('feature matrix')
     plt.xlabel('features')
     plt.ylabel('subjects')
-    plt.savefig('results/plots/feature_matrix')
+    plt.savefig('results/plots/feature_matrix.svg', format='svg')
     plt.clf()
 
     # plot model confusion matrix and metrics
@@ -108,7 +108,7 @@ if __name__ == '__main__':
         plt.xlabel('C Value (log10)')
         plt.legend()
         plt.title('Cross-Validation Accuracy as a Function of Regularizer C')
-        plt.savefig(f'results/plots/grid_search_history{suffix}')
+        plt.savefig(f'results/plots/grid_search_history{suffix}.svg', format='svg')
         plt.clf()
 
         # confusion matrix
@@ -119,7 +119,7 @@ if __name__ == '__main__':
         plt.yticks([0,1,2,3],labels=['ADHD', 'Bipolar', 'Control', 'Schizophrenia'], va='center', rotation=90)
         for (x, y), value in np.ndenumerate(cmat.T):
             plt.text(x, y, f"{value:.0f}", va="center", ha="center")
-        plt.savefig(f'results/plots/svc_cmatrix{suffix}')
+        plt.savefig(f'results/plots/svc_cmatrix{suffix}.svg', format='svg')
         plt.clf()
 
         # metrics
@@ -143,23 +143,23 @@ if __name__ == '__main__':
         inv_mask_vector = inv_mask.slicer[:,:,:,idx]
 
         plotting.plot_matrix(feat_vector, labels=masker.labels_, tri='lower')
-        plt.savefig(f'results/plots/{dis1}_vs{dis2}_feature_matrix')
+        plt.savefig(f'results/plots/{dis1}_vs{dis2}_feature_matrix.svg', format='svg')
         plt.clf()
 
         coords = plotting.find_parcellation_cut_coords(atlas['scale064'])
         plotting.plot_connectome(feat_vector, coords, edge_threshold= '98%')
-        plt.savefig(f'results/plots/{dis1}_vs_{dis2}_feature_connectome')
+        plt.savefig(f'results/plots/{dis1}_vs_{dis2}_feature_connectome.svg', format='svg')
         plt.clf()
 
         view = plotting.view_connectome(feat_vector, coords, edge_threshold = '98%')
         view.save_as_html(f'results/plots/{dis1}_vs_{dis2}_feature_connectome_interactive.html')
         plt.clf()
 
-        view = plotting.view_img(inv_mask_vector, threshold = '95%')
+        view = plotting.view_img(inv_mask_vector, threshold = '90%')
         view.save_as_html(f'results/plots/{dis1}_vs_{dis2}_image_interactive.html')
         plt.clf()
 
-        view = plotting.view_img_on_surf(inv_mask_vector, threshold = '95%')
+        view = plotting.view_img_on_surf(inv_mask_vector, threshold = '90%')
         view.save_as_html(f'results/plots/{dis1}_vs_{dis2}_3D_interactive.html')
         plt.clf()
 

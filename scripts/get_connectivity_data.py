@@ -78,7 +78,7 @@ if __name__ == '__main__':
         if args.verbosity-1:
             print('Fitting mask...')
 
-        time_series = masker.fit_transform(img, confounds=conf)
+        time_series = masker.fit_transform(img, confounds=conf, sample_mask=sample_mask)
 
         if args.verbosity-1:
             print('Getting correlation matrix...')
