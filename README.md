@@ -66,7 +66,7 @@ Preprocessing of raw fMRI data was done using `fMRIprep` (Esteban *et al*., 2018
 - Alignment of functional and anatomical MRI data
 - Brain masking and confound extraction
 
-To see a full report on preprocessing for each subject, see [here](https://github.com/brainhack-school2022/brotherwood_project/tree/master/data/derivatives/html_reports).
+Full reports on preprocessing for each subject can be found in `data/derivatives/html_reports`
 
 ### Getting Connectivity Data using `nilearn`
 
@@ -141,42 +141,52 @@ Following this, SVC coefficients were extracted to identify those features which
 **Control vs Schizophrenia**
 
 
-Click [here] for interactive map.
-Click [here] for interactive connectome.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_image_interactive.html) for an interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
-**Control vs ADHD***
+**Control vs ADHD**
 
 
-Click [here] for interactive map.
-Click [here] for interactive connectome.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_image_interactive.html) for an interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_3D_interactive.html) for a 3D interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_feature_connectome_interactive.html) for an interactive connectome.
 
 **Control vs Bipolar Disorder**
 
 
-Click [here] for interactive map.
-Click [here] for interactive connectome.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_image_interactive.html) for an interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_3D_interactive.html) for a 3D interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_feature_connectome_interactive.html) for an interactive connectome.
 
 **Schizophrenia vs ADHD**
 
 
-Click [here] for interactive map.
-Click [here] for interactive connectome.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_image_interactive.html) for an interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
 **Schizophrenia vs Bipolar Disorder**
 
 
-Click [here] for interactive map.
-Click [here] for interactive connectome.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_image_interactive.html) for an interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
 **ADHD vs Bipolar Disorder**
 
 
-Click [here] for interactive map.
-Click [here] for interactive connectome.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_image_interactive.html) for an interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_3D_interactive.html) for a 3D interactive map.
+Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_feature_connectome_interactive.html) for an interactive connectome.
 
 ## Conclusions
 
-### Tools and Deliverables
+### Can we predict diagnosis from fMRI data?
+While in this instance, the model was unable to accurately classify neuropsychiatric diagnoses based on resting state fMRI connectivity data, various factors should be considered when answering such a question. Various factors such as the nature and composition of the data, the features selected for model fitting, choice of mask and confounding strategy, choice of model, and choice of performance metric should all be considered when implementing such a pipeline as this.
+
+### Objectives, Tools, and Deliverables
+In terms of objectives to achieve, tools to learn, and deliverables to produce I believe the project was a success. The output is a comprehensive pipeline from raw data to visualization of results, utilising all of the tools I had aimed to learn. The deliverables are fulfilled, with a comprehensive walththrough of the project, and reproducible python scripts for replicable use. While complete containerization of the environment using Singularity was not possible, the following reproducibility guide serves as an adequate substitute for this.
 
 ## Guide to Reproducibility
 All scripts used in the analyses are located in the `scripts` directory and are executable in the Linux command line. Each script is written such that it can be executed using fMRI data from alternative functional tasks from the same dataset, or with similar datasets conforming to BIDS formatting standards. The `requirements.txt` file provides all neccesary dependencies for execution of scripts following preprocessing using fMRIprep.
@@ -223,7 +233,18 @@ $ source <path_to_venv>/bin/activate # enter the virtual environment
 ### Troubleshooting
 In the instance that attempting to run a script returns `permission denied`, it may be neccesary to run `(<venv_name>) $ chmod +x scripts/<script_name>.py`. Alternatively running `(<venv_name>) $ python3 scripts/<script_name>.py <args>` will execute the scripts.
 
+## Acknowledgements
+I would like to thank the Brainhack team of 2022 for their continued support throughout the course. With particular thanks to Hao-Ting Wang and Natasha Clarke for providing their support and expertise throughout the project.
+
 ## References
+Abraham, A., Pedregosa, F., Eickenberg, M., Gervais, P., Mueller, A., Kossaifi, J., Gramfort, A., Thirion, B. and Varoquaux, G., 2014. Machine learning for neuroimaging with scikit-learn. *Frontiers in Neuroinformatics*, 8.
+
+Bellec, P., Rosa-Neto, P., Benali, H. and Evans, A., 2009. Multi-level bootstrap analysis of stable clusters (BASC) in resting-state fMRI. *NeuroImage*, 47, p.S123.
+
+Esteban, O., Markiewicz, C., Blair, R., Moodie, C., Isik, A., Erramuzpe, A., Kent, J., Goncalves, M., DuPre, E., Snyder, M., Oya, H., Ghosh, S., Wright, J., Durnez, J., Poldrack, R. and Gorgolewski, K., 2018. fMRIPrep: a robust preprocessing pipeline for functional MRI. *Nature Methods*, 16(1), pp.111-116.
+
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V. and Vanderplas, J., 2011. Scikit-learn: Machine learning in Python. *The Journal of machine Learning research*, 12, pp.2825-2830.
+
 Poldrack, R., Congdon, E., Triplett, W., Gorgolewski, K., Karlsgodt, K., Mumford, J., Sabb, F., Freimer, N., London, E., Cannon, T. and Bilder, R., 2016. A phenome-wide examination of neural and cognitive function. *Scientific Data*, 3(1).
 
 Sheffield, J. and Barch, D., 2016. Cognition and resting-state functional connectivity in schizophrenia. *Neuroscience; Biobehavioral Reviews*, 61, pp.108-120.
