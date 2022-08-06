@@ -1,3 +1,8 @@
+<p align="center">
+<img src="docs/connectivity_image.jpg">
+</p>
+
+
 # Classifying Neuropsychiatric Disorder Diagnoses Using Resting State BOLD fMRI Connectivity Data
 
 ## About Me
@@ -11,7 +16,7 @@ I am a first year PhD student at the University of Montreal studying in computat
 ## Project Summary
 
 ### Introduction
-Brain regions with correlated temporal activity are seen to form functional networks of varying scale and distribution. Regions correlated at rest form resting state networks. Aberrant functional connectivity of resting state networks has been observed in multiple populations sufering from neuropsychiatric disorders; including ADHD (Sudre *et al*., 2017), Bipolar Disorder (Syan *et al*., 2018), and Schizophrenia (Sheffield & Barch, 2016). Given these observed differences in resting state network connectivity, this project aims to apply machine learning methods to investigate if aberrations in resting state functional connectvitiy can be used to identify neurophychiatric diagnoses.
+Brain regions with correlated temporal activity are seen to form functional networks of varying scale and distribution. Regions correlated at rest form resting state networks. Aberrant functional connectivity of resting state networks has been observed in multiple populations sufering from neuropsychiatric disorders; including ADHD (Sudre *et al*., 2017), Bipolar Disorder (Syan *et al*., 2018), and Schizophrenia (Sheffield & Barch, 2016). Given these observed differences in resting state network connectivity, this project aims to apply machine learning methods to investigate if aberrations in resting state functional connectvitiy can be used to identify neuropsychiatric diagnoses.
 
 ### Main Objectives
 - Provide a full neuroimaging workflow from preprocessing of raw data to visualisation of results.
@@ -33,7 +38,7 @@ Brain regions with correlated temporal activity are seen to form functional netw
 - Python Packages: `matplotlib`, `seaborn`, `scikit-learn`, `nilearn`
 
 ### Data
-The dataset used in this study comes from the UCLA Consortium for Neuropsychiatric Phenomics LA5c Study (Poldrack *et al*., 2016). The dataset is comprised of fMRI data for 130 healthy individuals, and 142 individuals with neuropsychiatric disorders. Of these 148 individuals, 50 suffer from schizophrenia, 49 from bipolar disorder, and 43 from ADHD. The dataset contains fMRI data collected at rest and over a series of attentional tasks. The fMRI data is in nifti format and the dataset is provided in BIDS format. More information on this dataset can be found at https://openneuro.org/datasets/ds000030/versions/1.0.0.
+The dataset used in this study comes from the UCLA Consortium for Neuropsychiatric Phenomics LA5c Study (Poldrack *et al*., 2016). The dataset is comprised of fMRI data for 122 healthy individuals, and 142 individuals with neuropsychiatric disorders. Of these 139 individuals, 50 are diagnosed with schizophrenia, 49 with bipolar disorder, and 40 with ADHD. The dataset contains fMRI data collected at rest and over a series of attentional tasks. The fMRI data is in nifti format and the dataset is provided in BIDS format. More information on this dataset can be found at https://openneuro.org/datasets/ds000030/versions/1.0.0.
 
 A summary of the dataset is as follows:
 
@@ -58,7 +63,7 @@ A summary of the dataset is as follows:
 
 ### Preprocessing using `fMRIprep`
 
-Preprocessing of raw fMRI data was done using `fMRIprep` (Esteban *et al*., 2018) and executed via the `prepreocessing.sh` script on Alliance Canada's Beluga HPC Cluster. Due to lack of resting state data for some subjects, 260 preprocessed resting state BOLD fMRI and their associated confound files were returned. fMRIprep was run using singularity 3.8 and subjected the data to the following steps:
+Preprocessing of raw fMRI data was done using `fMRIprep` (Esteban *et al*., 2018) and executed via the `preprocessing.sh` script on Alliance Canada's Beluga HPC Cluster. Due to lack of resting state data for some subjects, 260 preprocessed resting state BOLD fMRI and their associated confound files were returned. fMRIprep was run using singularity 3.8 with the following steps:
 
 - Brain masking and tissue segementation of T1w image
 - Spatial normalization of the anatomical T1w reference
@@ -209,10 +214,10 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_
 ## Conclusions
 
 ### Can we predict diagnosis from fMRI data?
-While in this instance, the model was unable to accurately classify neuropsychiatric diagnoses based on resting state fMRI connectivity data, various factors should be considered when answering such a question. Various factors such as the nature and composition of the data, the features selected for model fitting, choice of mask and confounding strategy, choice of model, and choice of performance metric should all be considered when implementing such a pipeline as this.
+While in this instance, the model was unable to accurately classify neuropsychiatric diagnoses based on resting state fMRI connectivity data, various factors should be considered when answering such a question. Factors such as the nature and composition of the data, the features selected for model fitting, choice of mask and confounding strategy, choice of model, and choice of performance metric should all be considered when implementing such a pipeline as this.
 
 ### Objectives, Tools, and Deliverables
-In terms of objectives to achieve, tools to learn, and deliverables to produce I believe the project was a success. The output is a comprehensive pipeline from raw data to visualization of results, utilising all of the tools I had aimed to learn. The deliverables are fulfilled, with a comprehensive walththrough of the project, and reproducible python scripts for replicable use. While complete containerization of the environment using Singularity was not possible, the following reproducibility guide serves as an adequate substitute for this.
+In terms of objectives to achieve, tools to learn, and deliverables to produce I believe the project was a success. The output is a comprehensive pipeline from raw data to visualization of results, utilising all of the tools I had aimed to learn. The deliverables are fulfilled, with a comprehensive walkthrough of the project, and reproducible python scripts for replicable use. While complete containerization of the environment using Singularity was not possible, the following reproducibility guide serves as an adequate substitute for this.
 
 ## Guide to Reproducibility
 All scripts used in the analyses are located in the `scripts` directory and are executable in the Linux command line. Each script is written such that it can be executed using fMRI data from alternative functional tasks from the same dataset, or with similar datasets conforming to BIDS formatting standards. The `requirements.txt` file provides all neccesary dependencies for execution of scripts following preprocessing using fMRIprep.
