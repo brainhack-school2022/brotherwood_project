@@ -58,8 +58,7 @@ A summary of the dataset is as follows:
 
 ### Preprocessing using `fMRIprep`
 
-Preprocessing of raw fMRI data was done using `fMRIprep` (Esteban *et al*., 2018) and executed via the `prepreocessing.sh` script on Alliance Canada's Beluga HPC Cluster. Due to lack of resting state data for \
-some subjects, 260 preprocessed resting state BOLD fMRI and their associated confound files were returned. fMRIprep was run using singularity 3.8 and subjected the data to the following steps:
+Preprocessing of raw fMRI data was done using `fMRIprep` (Esteban *et al*., 2018) and executed via the `prepreocessing.sh` script on Alliance Canada's Beluga HPC Cluster. Due to lack of resting state data for some subjects, 260 preprocessed resting state BOLD fMRI and their associated confound files were returned. fMRIprep was run using singularity 3.8 and subjected the data to the following steps:
 
 - Brain masking and tissue segementation of T1w image
 - Spatial normalization of the anatomical T1w reference
@@ -71,28 +70,113 @@ To see a full report on preprocessing for each subject, see [here](https://githu
 
 ### Getting Connectivity Data using `nilearn`
 
-Brain masking and connectivity data retrieval was done using `nilearn` (Abraham *et al*., 2014). The BASC multiscale deterministic atlas (Bellec *et al*., 2009) with 64 regions of interest (ROIs) was used to \
-mask the preprocessed voxel-wise BOLD activity data, in order to reduce the complexity of the features. A plot of this atlas can be seen below:
+Brain masking and connectivity data retrieval was done using `nilearn` (Abraham *et al*., 2014). The BASC multiscale deterministic atlas (Bellec *et al*., 2009) with 64 regions of interest (ROIs) was used to mask the preprocessed voxel-wise BOLD activity data, in order to reduce the complexity of the features. A plot of this atlas can be seen below:
+
 
 <p align="center">
 <img src="docs/atlas.png">
 </p>
 
-Confounds detected by `fMRIprep` were loaded using `nilearn`'s `load_confounds_strategy` method and regressed out during masking. Following this, connectivity matrices showing correlations in BOLD \
-timeseries activity between ROIs were generated for each subject. The impact of confound removal strategy on the output connectivity matrices can be seen below:
+
+Confounds detected by `fMRIprep` were loaded using `nilearn`'s `load_confounds_strategy` method and regressed out during masking. Following this, connectivity matrices showing correlations in BOLD timeseries activity between ROIs were generated for each subject. The impact of confound removal strategy on the output connectivity matrices can be seen below:
+
 
 <p align="center">
 <img src="docs/confounds.png">
 </p>
 
-The upper triangular vector (UTV) of each subject's connectivity matrix forms a set of features which will serve as input to the machine learning step. The UTVs of all matrices can be combined to form \
-a feature matrix:
+
+The upper triangular vector (UTV) of each subject's connectivity matrix forms a set of features which will serve as input to the machine learning step. The UTVs of all matrices can be combined to form a feature matrix:
+
 
 <p align="center">
 <img src="docs/connectivity.png">
 </p>
 
+
 ### Machine Learning using `scikit-learn`
+
+Phenotype was learned and predicted using a support vector classifier with a linear kernel from `scikit-learn` (Pedregrosa *et al*., 2011). 30% of individuals were used as unseen test data, and a grid search with 5-fold cross validation was used to find the optimum value the `C` regularizer. This process was done once with the full dataset, and once with a stratified dataset, as seen below:
+
+
+<p align="center">
+<img src="docs/stratification.png">
+</p>
+
+Using each model to predict the unseen test data, the folllowing multi-label confusion matrices were obtained:
+
+
+<p align="center">
+<img src="docs/conf_matrices.png">
+</p>
+
+
+With the corresponding classification summaries:
+
+**All Subjects**
+
+Accuracy: 0.456
+
+|              |Control| ADHD |Bipolar Disorder|Schizophrenia|Macro Average|Weighted Average|
+|:-------------|:-----:|:----:|:--------------:|:-----------:|:-----------:|:--------------:|
+|Precision     |0.528  |0.0   |0.083           |0.583        |0.299        |0.374           |
+|Recall        |0.757  |0.0   |0.067           |0.467        |0.323        |0.456           |
+|F1 Score      |0.622  |0.0   |0.074           |0.519        |0.304        |0.404           |
+|Support       |37     |12    |15              |15           |             |                |
+
+**Stratified Subjects**
+
+Accuracy: 0.316
+
+|              |Control| ADHD |Bipolar Disorder|Schizophrenia|Macro Average|Weighted Average|
+|:-------------|:-----:|:----:|:--------------:|:-----------:|:-----------:|:--------------:|
+|Precision     |0.384  |0.176 |0.294           |0.500        |0.338        |0.347           |
+|Recall        |0.333  |0.250 |0.333           |0.333        |0.313        |0.316           |
+|F1 Score      |0.357  |0.207 |0.313           |0.400        |0.319        |0.325           |
+|Support       |15     |12    |15              |15           |             |                |
+
+
+Following this, SVC coefficients were extracted to identify those features which had the most extreme weights when predicting phenotype:
+
+**Control vs Schizophrenia**
+
+
+Click [here] for interactive map.
+Click [here] for interactive connectome.
+
+**Control vs ADHD***
+
+
+Click [here] for interactive map.
+Click [here] for interactive connectome.
+
+**Control vs Bipolar Disorder**
+
+
+Click [here] for interactive map.
+Click [here] for interactive connectome.
+
+**Schizophrenia vs ADHD**
+
+
+Click [here] for interactive map.
+Click [here] for interactive connectome.
+
+**Schizophrenia vs Bipolar Disorder**
+
+
+Click [here] for interactive map.
+Click [here] for interactive connectome.
+
+**ADHD vs Bipolar Disorder**
+
+
+Click [here] for interactive map.
+Click [here] for interactive connectome.
+
+## Conclusions
+
+### Tools and Deliverables
 
 ## Guide to Reproducibility
 All scripts used in the analyses are located in the `scripts` directory and are executable in the Linux command line. Each script is written such that it can be executed using fMRI data from alternative functional tasks from the same dataset, or with similar datasets conforming to BIDS formatting standards. The `requirements.txt` file provides all neccesary dependencies for execution of scripts following preprocessing using fMRIprep.
