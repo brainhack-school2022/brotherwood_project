@@ -141,44 +141,44 @@ Following this, SVC coefficients were extracted to identify those features which
 **Control vs Schizophrenia**
 
 
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_image_interactive.html) for an interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_image_interactive.html) for an interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
 **Control vs ADHD**
 
 
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_image_interactive.html) for an interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_3D_interactive.html) for a 3D interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_feature_connectome_interactive.html) for an interactive connectome.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_image_interactive.html) for an interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_3D_interactive.html) for a 3D interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_feature_connectome_interactive.html) for an interactive connectome.
 
 **Control vs Bipolar Disorder**
 
 
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_image_interactive.html) for an interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_3D_interactive.html) for a 3D interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_feature_connectome_interactive.html) for an interactive connectome.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_image_interactive.html) for an interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_3D_interactive.html) for a 3D interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_feature_connectome_interactive.html) for an interactive connectome.
 
 **Schizophrenia vs ADHD**
 
 
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_image_interactive.html) for an interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_image_interactive.html) for an interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
 **Schizophrenia vs Bipolar Disorder**
 
 
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_image_interactive.html) for an interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_image_interactive.html) for an interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
 **ADHD vs Bipolar Disorder**
 
 
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_image_interactive.html) for an interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_3D_interactive.html) for a 3D interactive map.
-Click [here] (https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_feature_connectome_interactive.html) for an interactive connectome.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_image_interactive.html) for an interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_3D_interactive.html) for a 3D interactive map.
+Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_feature_connectome_interactive.html) for an interactive connectome.
 
 ## Conclusions
 
