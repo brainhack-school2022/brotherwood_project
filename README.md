@@ -96,7 +96,7 @@ The upper triangular vector (UTV) of each subject's connectivity matrix forms a 
 
 ### Machine Learning using `scikit-learn`
 
-Phenotype was learned and predicted using a support vector classifier with a linear kernel from `scikit-learn` (Pedregrosa *et al*., 2011). 30% of individuals were used as unseen test data, and a grid search with 5-fold cross validation was used to find the optimum value the `C` regularizer. This process was done once with the full dataset, and once with a stratified dataset, as seen below:
+Phenotype was learned and predicted using a support vector classifier with a linear kernel from `scikit-learn` (Pedregrosa *et al*., 2011). 30% of individuals were used as unseen test data, and a grid search with 5-fold cross validation was performed on the remaining 70% of subjects to find the optimum value for the the `C` regularizer. This process was done once with the full dataset, and once with a stratified dataset, as seen below:
 
 
 <p align="center">
@@ -113,6 +113,7 @@ Using each model to predict the unseen test data, the folllowing multi-label con
 
 With the corresponding classification summaries:
 
+
 **All Subjects**
 
 Accuracy: 0.456
@@ -123,6 +124,7 @@ Accuracy: 0.456
 |Recall        |0.757  |0.0   |0.067           |0.467        |0.323        |0.456           |
 |F1 Score      |0.622  |0.0   |0.074           |0.519        |0.304        |0.404           |
 |Support       |37     |12    |15              |15           |             |                |
+
 
 **Stratified Subjects**
 
@@ -140,6 +142,7 @@ Following this, SVC coefficients were extracted to identify those features which
 
 **Control vs Schizophrenia**
 
+
 <p align="center">
 <img src="docs/cont_schz_coefs.png">
 </p>
@@ -149,6 +152,7 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
 **Control vs ADHD**
+
 
 <p align="center">
 <img src="docs/cont_adhd_coefs.png">
@@ -160,6 +164,7 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_
 
 **Control vs Bipolar Disorder**
 
+
 <p align="center">
 <img src="docs/cont_bipo_coefs.png">
 </p>
@@ -169,6 +174,7 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_feature_connectome_interactive.html) for an interactive connectome.
 
 **Schizophrenia vs ADHD**
+
 
 <p align="center">
 <img src="docs/schz_adhd_coefs.png">
@@ -180,6 +186,7 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_
 
 **Schizophrenia vs Bipolar Disorder**
 
+
 <p align="center">
 <img src="docs/schz_bipo_coefs.png">
 </p>
@@ -189,6 +196,7 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_feature_connectome_interactive.html) for an interactive connectome.
 
 **ADHD vs Bipolar Disorder**
+
 
 <p align="center">
 <img src="docs/adhd_bipo_coefs.png">
