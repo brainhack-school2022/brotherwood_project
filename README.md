@@ -1,4 +1,4 @@
-# Classifying Neuropsychiatric Disorder Diagnoses Using Resting State BOLD fMRI Connectovoty Data
+# Classifying Neuropsychiatric Disorder Diagnoses Using Resting State BOLD fMRI Connectivity Data
 
 ## About Me
 
@@ -140,6 +140,9 @@ Following this, SVC coefficients were extracted to identify those features which
 
 **Control vs Schizophrenia**
 
+<p align="center">
+<img src="docs/cont_schz_coefs.png">
+</p>
 
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_image_interactive.html) for an interactive map.
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
@@ -147,6 +150,9 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/Control_
 
 **Control vs ADHD**
 
+<p align="center">
+<img src="docs/cont_adhd_coefs.png">
+</p>
 
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_image_interactive.html) for an interactive map.
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Control_3D_interactive.html) for a 3D interactive map.
@@ -154,6 +160,9 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_
 
 **Control vs Bipolar Disorder**
 
+<p align="center">
+<img src="docs/cont_bipo_coefs.png">
+</p>
 
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_image_interactive.html) for an interactive map.
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Control_3D_interactive.html) for a 3D interactive map.
@@ -161,6 +170,9 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_
 
 **Schizophrenia vs ADHD**
 
+<p align="center">
+<img src="docs/schz_adhd_coefs.png">
+</p>
 
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_image_interactive.html) for an interactive map.
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
@@ -168,6 +180,9 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_
 
 **Schizophrenia vs Bipolar Disorder**
 
+<p align="center">
+<img src="docs/schz_bipo_coefs.png">
+</p>
 
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_image_interactive.html) for an interactive map.
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_vs_Schizophrenia_3D_interactive.html) for a 3D interactive map.
@@ -175,6 +190,9 @@ Click [here](https://brainhack-school2022.github.io/brotherwood_project/Bipolar_
 
 **ADHD vs Bipolar Disorder**
 
+<p align="center">
+<img src="docs/adhd_bipo_coefs.png">
+</p>
 
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_image_interactive.html) for an interactive map.
 Click [here](https://brainhack-school2022.github.io/brotherwood_project/ADHD_vs_Bipolar_3D_interactive.html) for a 3D interactive map.
